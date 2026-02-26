@@ -1,0 +1,7 @@
+/target/
+/.classpath
+/.project
+/log4j2.xml
+/svarog.properties
+/doc/
+/.settings/
