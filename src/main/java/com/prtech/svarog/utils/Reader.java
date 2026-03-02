@@ -1008,7 +1008,7 @@ public class Reader {
 	public DateTime getDateFromDBField(String dbFieldName, DbDataObject dboToExtractInfoFrom) {
 		DateTime result = null;
 		if (dboToExtractInfoFrom.getVal(dbFieldName) != null) {
-			String pattern = Sv.DATE_PATTERN;
+			String pattern = Svu.DATE_PATTERN;
 			String departureDate = dboToExtractInfoFrom.getVal(dbFieldName).toString().substring(0, 10);
 			result = DateTime.parse(departureDate, DateTimeFormat.forPattern(pattern));
 		}
