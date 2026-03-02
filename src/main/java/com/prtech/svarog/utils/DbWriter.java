@@ -49,26 +49,6 @@ public class DbWriter {
 		return generateId;
 	}
 
-
-	public JsonObject generateTableObject(ArrayList<String> fieldsNames, DbDataObject dbo, SvReader svr) {
-		JsonObject obj = new JsonObject();
-		if (!fieldsNames.isEmpty() && !Objects.isNull(dbo)) {
-			obj.addProperty(Sv.STATUS, dbo.getStatus());
-
-			for (int i = 0; i < fieldsNames.size(); i++) {
-				String fieldName = fieldsNames.get(i);
-				if (!Objects.isNull(dbo.getVal(fieldName))) {
-					obj.addProperty(fieldName, dbo.getVal(fieldName).toString());
-				} else {
-					obj.addProperty(fieldName, Sv.EMPTY_STRING);
-				}
-			}
-
-		}
-		return obj;
-	}
-
-
 	public void grantPermissions(DbDataObject dboSID, DbDataArray dbaCurrentAclObjects, List<String> list, SvReader svr)
 			throws SvException {
 		try (SvSecurity svs = new SvSecurity(svr)) {
@@ -82,6 +62,19 @@ public class DbWriter {
 		}
 	}
 
+	/**
+	 * Create user with the given parameters
+	 * 
+	 * @param userName
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param pin
+	 * @param password
+	 * @param svr
+	 * @return
+	 * @throws SvException
+	 */
 	public DbDataObject createDefaultTestUser(String userName, String firstName, String lastName, String email,
 			String pin, String password, SvReader svr) throws SvException {
 		DbDataObject dboUser = new DbReader().searchDbObjectBySingleFilter(svCONST.OBJECT_TYPE_USER, "USER_NAME",
@@ -96,13 +89,36 @@ public class DbWriter {
 			dboUser.setVal("LAST_NAME", lastName);
 			dboUser.setVal("PIN", pin);
 			dboUser.setVal("E_MAIL", email);
-			dboUser.setVal("PASSWORD_HASH", SvUtil.getMD5(password));
+			dboUser.setVal("PASSWORD_HASH", SvUtil.getMD5(SvUtil.getMD5(password)));
 		} else {
 			throw (new SvException("error.createUser.userAlreadyExist", svr.getInstanceUser()));
 		}
 		return dboUser;
 	}
 
+	/**
+	 * Method that creates SVAROG links between users and groups
+	 * 
+	 * @param linkTypeObjId
+	 * @param dbo1
+	 * @param dbo2
+	 * @return
+	 */
+	public DbDataObject createSvarogLink(Long linkTypeObjId, DbDataObject dbo1, DbDataObject dbo2) {
+		DbDataObject dbLink = new DbDataObject();
+		dbLink.setObjectType(svCONST.OBJECT_TYPE_LINK);
+		dbLink.setVal(Svu.LINK_TYPE_ID, linkTypeObjId);
+		dbLink.setVal(Svu.LINK_OBJ_ID_1, dbo1.getObjectId());
+		dbLink.setVal(Svu.LINK_OBJ_ID_2, dbo2.getObjectId());
+		return dbLink;
+	}
+
+	/**
+	 * Create Custom ACL object
+	 * 
+	 * @param permission
+	 * @return
+	 */
 	public DbDataObject createCustomDboAcl(String permission) {
 		DbDataObject dboCustomAcl = new DbDataObject();
 		dboCustomAcl.setObjectType(svCONST.OBJECT_TYPE_ACL);
@@ -114,6 +130,17 @@ public class DbWriter {
 		return dboCustomAcl;
 	}
 
+	/**
+	 * Create custom SVAROG_CODE with the given parameters
+	 * 
+	 * @param codeValue
+	 * @param labelCode
+	 * @param parenLabelValue
+	 * @param dbr
+	 * @param svr
+	 * @param svw
+	 * @throws SvException
+	 */
 	public void createCustomCode(String codeValue, String labelCode, String parenLabelValue, DbReader dbr, SvReader svr,
 			SvWriter svw) throws SvException {
 		DbDataObject dbo = new DbDataObject();
@@ -127,24 +154,35 @@ public class DbWriter {
 		svw.saveObject(dbo);
 	}
 
+	/**
+	 * Create custom SVAROG_LABEL with the given parameters
+	 * 
+	 * @param labelCode
+	 * @param labelText
+	 * @param localeId
+	 * @param svr
+	 * @param svw
+	 * @throws SvException
+	 */
 	public void createCustomLabel(String labelCode, String labelText, String localeId, SvReader svr, SvWriter svw)
 			throws SvException {
 		if (localeId.equals(Sv.EMPTY_STRING)) {
 			localeId = "en_US";
 		}
-		DbDataObject localeObj = new DbReader().searchDbObjectBySingleFilter(svCONST.OBJECT_TYPE_LOCALE, "LOCALE_ID",
+		DbDataObject localeObj = new DbReader().searchDbObjectBySingleFilter(svCONST.OBJECT_TYPE_LOCALE, Sv.LOCALE_ID,
 				localeId, svr);
-
-		DbDataObject dbo = new DbDataObject();
-		dbo.setObjectType(svCONST.OBJECT_TYPE_LABEL);
-		dbo.setParentId(localeObj.getObjectId());
-		dbo.setVal(Sv.LABEL_CODE, labelCode);
-		dbo.setVal(Sv.LABEL_TEXT, labelText);
-		dbo.setVal(Sv.LOCALE_ID, localeId);
-		svw.saveObject(dbo);
-		I18n.invalidateLabelsCache(dbo);
+		if (localeObj != null) {
+			DbDataObject dbo = new DbDataObject();
+			dbo.setObjectType(svCONST.OBJECT_TYPE_LABEL);
+			dbo.setParentId(localeObj.getObjectId());
+			dbo.setVal(Sv.LABEL_CODE, labelCode);
+			dbo.setVal(Sv.LABEL_TEXT, labelText);
+			dbo.setVal(Sv.LOCALE_ID, localeId);
+			svw.saveObject(dbo);
+			I18n.invalidateLabelsCache(dbo);
+		}
 	}
-
+	
 	public static boolean checkIfDbDataArrayContainsPermission(DbDataArray dbArrayPermissions, String permission) {
 		boolean result = false;
 		for (DbDataObject dbo : dbArrayPermissions.getItems()) {
@@ -165,4 +203,5 @@ public class DbWriter {
 		else
 			return true;
 	}
+	
 }

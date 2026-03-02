@@ -44,6 +44,28 @@ public class Svu {
 	public static final String LINK_OBJ_ID_2 = "LINK_OBJ_ID_2";
 	public static final String LINK_TYPE_ID = "LINK_TYPE_ID";
 	public static final String LBL_TRANSL = "LBL_TRANSL";
+	public static final String OBJECT_TYPE = "OBJECT_TYPE";
+	public static final String USER_ID = "USER_ID";
+	public static final String DT_INSERT = "DT_INSERT";
+	public static final String DT_DELETE = "DT_DELETE";
+	public static final String META_PKID = "META_PKID";
+	public static final String SV_MUTLISELECT = "SV_MUTLISELECT";
+	public static final String NUMERIC = "NUMERIC";
+	public static final String DATE = "DATE";
+	public static final String TIMESTAMP = "TIMESTAMP";
+	public static final String DATETIME = "DATETIME";
+	public static final String USER_TYPE = "USER_TYPE";
+	public static final String LAST_NAME = "LAST_NAME";
+	public static final String PIN = "PIN";
+	public static final String PARENT_OU_ID = "PARENT_OU_ID";
+	public static final String HEADQUARTER = "HEADQUARTER";
+	public static final String UNIT_ID = "UNIT_ID";
+	public static final String UNIT_CLASS = "UNIT_CLASS";
+	public static final String EXTERNAL_ID = "EXTERNAL_ID";
+	public static final String NOTE_NAME = "NOTE_NAME";
+	public static final String REGION_CODE = "REGION_CODE";
+	public static final String NOT_AVAILABLE_NA = "NOT_AVAILABLE_NA";
+	public static final String EMPTY_ARRAY_STRING = "[]";
 
 	private Svu() {
 
