@@ -66,6 +66,7 @@ public class Svu {
 	public static final String REGION_CODE = "REGION_CODE";
 	public static final String NOT_AVAILABLE_NA = "NOT_AVAILABLE_NA";
 	public static final String EMPTY_ARRAY_STRING = "[]";
+	public static final String DATE_PATTERN = "DATE_PATTERN";
 
 	private Svu() {
 

@@ -988,7 +988,7 @@ public class Reader {
 
 	public Integer getDayDiffBetweenDates(String date1, String date2) {
 		Integer result = 0;
-		String pattern = Sv.DATE_PATTERN;
+		String pattern = Svu.DATE_PATTERN;
 		DateTime dateOfFirst = DateTime.parse(date1, DateTimeFormat.forPattern(pattern));
 		DateTime dateOfSecond = DateTime.parse(date2, DateTimeFormat.forPattern(pattern));
 		result = (int) getDateDiff(dateOfFirst, dateOfSecond, TimeUnit.DAYS);
