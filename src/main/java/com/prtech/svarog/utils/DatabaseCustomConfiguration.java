@@ -196,9 +196,10 @@ public class DatabaseCustomConfiguration {
 			SvReader svr) throws SvException {
 		DbDataObject tempUserGroup = searchUserGroupInDb(svCONST.OBJECT_TYPE_GROUP, userGroupType, userGroupName, svr);
 		if (tempUserGroup == null) {
-			tempUserGroup = createUserGroup(userGroupType, userGroupName, groupSecurityType);
+			return createUserGroup(userGroupType, userGroupName, groupSecurityType);
+		} else {
+			return null;
 		}
-		return tempUserGroup;
 	}
 
 	/**
@@ -495,39 +496,56 @@ public class DatabaseCustomConfiguration {
 		DbDataArray usersAndGroupsForSave = new DbDataArray();
 		DbDataArray linksUserAndGroups = new DbDataArray();
 		DbDataObject dboUserGroup1 = createUserGroupIfNotExist(defaultGroupType, groupName1, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup1);
+		if (dboUserGroup1 != null)
+			usersAndGroups.addDataItem(dboUserGroup1);
 		DbDataObject dboUserGroup2 = createUserGroupIfNotExist(defaultGroupType, groupName2, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup2);
+		if (dboUserGroup2 != null)
+			usersAndGroups.addDataItem(dboUserGroup2);
 		DbDataObject dboUserGroup3 = createUserGroupIfNotExist(defaultGroupType, groupName3, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup3);
+		if (dboUserGroup3 != null)
+			usersAndGroups.addDataItem(dboUserGroup3);
 		DbDataObject dboUserGroup4 = createUserGroupIfNotExist(defaultGroupType, groupName4, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup4);
+		if (dboUserGroup4 != null)
+			usersAndGroups.addDataItem(dboUserGroup4);
 		DbDataObject dboUserGroup5 = createUserGroupIfNotExist(defaultGroupType, groupName5, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup5);
+		if (dboUserGroup5 != null)
+			usersAndGroups.addDataItem(dboUserGroup5);
 		DbDataObject dboUserGroup6 = createUserGroupIfNotExist(defaultGroupType, groupName6, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup6);
+		if (dboUserGroup6 != null)
+			usersAndGroups.addDataItem(dboUserGroup6);
 		DbDataObject dboUserGroup7 = createUserGroupIfNotExist(defaultGroupType, groupName7, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup7);
+		if (dboUserGroup7 != null)
+			usersAndGroups.addDataItem(dboUserGroup7);
 		DbDataObject dboUserGroup8 = createUserGroupIfNotExist(defaultGroupType, groupName8, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup8);
+		if (dboUserGroup8 != null)
+			usersAndGroups.addDataItem(dboUserGroup8);
 		DbDataObject dboUserGroup9 = createUserGroupIfNotExist(defaultGroupType, groupName9, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup9);
+		if (dboUserGroup9 != null)
+			usersAndGroups.addDataItem(dboUserGroup9);
 		DbDataObject dboUserGroup10 = createUserGroupIfNotExist(defaultGroupType, groupName10, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup10);
+		if (dboUserGroup10 != null)
+			usersAndGroups.addDataItem(dboUserGroup10);
 		DbDataObject dboUserGroup11 = createUserGroupIfNotExist(defaultGroupType, groupName11, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup11);
+		if (dboUserGroup11 != null)
+			usersAndGroups.addDataItem(dboUserGroup11);		
 		DbDataObject dboUserGroup12 = createUserGroupIfNotExist(defaultGroupType, groupName12, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup12);
+		if (dboUserGroup12 != null)
+			usersAndGroups.addDataItem(dboUserGroup12);
 		DbDataObject dboUserGroup13 = createUserGroupIfNotExist(defaultGroupType, groupName13, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup13);
+		if (dboUserGroup13 != null)
+			usersAndGroups.addDataItem(dboUserGroup13);
 		DbDataObject dboUserGroup14 = createUserGroupIfNotExist(defaultGroupType, groupName14, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup14);
+		if (dboUserGroup14 != null)
+			usersAndGroups.addDataItem(dboUserGroup14);
 		DbDataObject dboUserGroup15 = createUserGroupIfNotExist(Tc.ADMINISTRATORS, groupName15, Tc.FULL, svr);
-		usersAndGroups.addDataItem(dboUserGroup15);
+		if (dboUserGroup15 != null)
+			usersAndGroups.addDataItem(dboUserGroup15);
 		DbDataObject dboUserGroup16 = createUserGroupIfNotExist(defaultGroupType, groupName16, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup16);
+		if (dboUserGroup16 != null)
+			usersAndGroups.addDataItem(dboUserGroup16);
 		DbDataObject dboUserGroup17 = createUserGroupIfNotExist(defaultGroupType, groupName17, Tc.POA, svr);
-		usersAndGroups.addDataItem(dboUserGroup17);
+		if (dboUserGroup17 != null)
+			usersAndGroups.addDataItem(dboUserGroup17);
 		DbDataObject user1 = createUserIfNotExist(defaultUserPin, userName1, "cviro@test.com", defaultUserPassword,
 				defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
 		usersAndGroups.addDataItem(user1);
@@ -762,8 +780,8 @@ public class DatabaseCustomConfiguration {
 				true, svw, svr);
 		createAclObject("undo_retire_export_anim", "undo_retire_export_anim", svCONST.OBJECT_TYPE_TABLE, Tc.EXECUTE,
 				true, svw, svr);
-		createAclObject("SECURITY_PERUN.LOGIN_PERUN", "SECURITY_PERUN.LOGIN_PERUN", svCONST.OBJECT_TYPE_TABLE, Tc.EXECUTE, true,
-				svw, svr);
+		createAclObject("SECURITY_PERUN.LOGIN_PERUN", "SECURITY_PERUN.LOGIN_PERUN", svCONST.OBJECT_TYPE_TABLE,
+				Tc.EXECUTE, true, svw, svr);
 	}
 
 	/**
@@ -1006,7 +1024,7 @@ public class DatabaseCustomConfiguration {
 
 		log4j.info("Object SVAROG_FIELDS: " + fieldName + " updated with new " + action);
 	}
-	
+
 	/**
 	 * Create Default SVAROG_PARAM_TYPE
 	 * 
@@ -1032,7 +1050,7 @@ public class DatabaseCustomConfiguration {
 		createParamTypeIfNotPresent("param.recommendation", Tc.NVARCHAR, Tc.TEXT_AREA, rdr, svw, svr);
 		createParamTypeIfNotPresent("param.note", Tc.NVARCHAR, Tc.TEXT_AREA, rdr, svw, svr);
 	}
-	
+
 	/**
 	 * Create SVAROG_PARAM_TYPE if it is not present
 	 * 
@@ -1051,7 +1069,7 @@ public class DatabaseCustomConfiguration {
 			svw.saveObject(paramType);
 		}
 	}
-	
+
 	/**
 	 * Create SVAROG_PARAM_TYPE
 	 * 
