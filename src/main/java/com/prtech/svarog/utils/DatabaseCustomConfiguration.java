@@ -527,7 +527,7 @@ public class DatabaseCustomConfiguration {
 			usersAndGroups.addDataItem(dboUserGroup10);
 		DbDataObject dboUserGroup11 = createUserGroupIfNotExist(defaultGroupType, groupName11, Tc.POA, svr);
 		if (dboUserGroup11 != null)
-			usersAndGroups.addDataItem(dboUserGroup11);		
+			usersAndGroups.addDataItem(dboUserGroup11);
 		DbDataObject dboUserGroup12 = createUserGroupIfNotExist(defaultGroupType, groupName12, Tc.POA, svr);
 		if (dboUserGroup12 != null)
 			usersAndGroups.addDataItem(dboUserGroup12);
@@ -548,55 +548,72 @@ public class DatabaseCustomConfiguration {
 			usersAndGroups.addDataItem(dboUserGroup17);
 		DbDataObject user1 = createUserIfNotExist(defaultUserPin, userName1, "cviro@test.com", defaultUserPassword,
 				defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user1);
+		if (user1.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user1);
 		DbDataObject user2 = createUserIfNotExist(defaultUserPin, userName2, "fviro@test.com", defaultUserPassword,
 				defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user2);
+		if (user2.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user2);
 		DbDataObject user3 = createUserIfNotExist(defaultUserPin, userName3, "laborant@test.com", defaultUserPassword,
 				defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user3);
+		if (user3.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user3);
 		DbDataObject user4 = createUserIfNotExist(defaultUserPin, userName4, "dataEntryClerk@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user4);
+		if (user4.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user4);
 		DbDataObject user5 = createUserIfNotExist(defaultUserPin, userName5, "holdingRegistrators@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user5);
+		if (user5.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user5);
 		DbDataObject user6 = createUserIfNotExist(defaultUserPin, userName6, "animalRegistrators@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user6);
+		if (user6.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user6);
 		DbDataObject user7 = createUserIfNotExist(defaultUserPin, userName7, "holdingAdministrators@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user7);
+		if (user7.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user7);
 		DbDataObject user8 = createUserIfNotExist(defaultUserPin, userName8, "ahsmtAdmins@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user8);
+		if (user8.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user8);
 		DbDataObject user9 = createUserIfNotExist(defaultUserPin, userName9, "quarantineAdministrators@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user9);
+		if (user9.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user9);
 		DbDataObject user10 = createUserIfNotExist(defaultUserPin, userName10, "dimAdministrators@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user10);
+		if (user10.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user10);
 		DbDataObject user11 = createUserIfNotExist(defaultUserPin, userName11, "slaughterAdmins@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user11);
+		if (user11.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user11);
 		DbDataObject user12 = createUserIfNotExist(defaultUserPin, userName12, "ryskAdmins@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user12);
+		if (user12.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user12);
 		DbDataObject user13 = createUserIfNotExist(defaultUserPin, userName13, "petVets@test.com", defaultUserPassword,
 				defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user13);
+		if (user13.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user13);
 		DbDataObject user14 = createUserIfNotExist(defaultUserPin, userName14, "BankInsurance@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user14);
+		if (user14.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user14);
 		DbDataObject user15 = createUserIfNotExist(defaultUserPin, userName15, "naitsAdmin@test.com",
 				defaultUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user15);
+		if (user15.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user15);
 		DbDataObject user16 = createUserIfNotExist(defaultUserPin, userName16, "customsOfficers@test.com",
 				defaultNewUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user16);
+		if (user16.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user16);
 		DbDataObject user17 = createUserIfNotExist(defaultUserPin, userName17, "shelterOperator@test.com",
 				defaultNewUserPassword, defaultUserFirstName, defaultUserLastName, rdr, dbw, svr, svw);
-		usersAndGroups.addDataItem(user17);
+		if (user17.getObjectId().equals(0L))
+			usersAndGroups.addDataItem(user17);
 		for (DbDataObject tempDbo : usersAndGroups.getItems()) {
 			if (tempDbo.getObjectId() == 0L) {
 				usersAndGroupsForSave.addDataItem(tempDbo);
