@@ -4,79 +4,38 @@
 
 package com.prtech.svarog.utils;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-
-import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
-import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
 import com.prtech.svarog.CodeList;
 import com.prtech.svarog.I18n;
 import com.prtech.svarog.Sv;
 import com.prtech.svarog.SvConf;
 import com.prtech.svarog.SvCore;
 import com.prtech.svarog.SvException;
-import com.prtech.svarog.SvFileStore;
 import com.prtech.svarog.SvLink;
-import com.prtech.svarog.SvNote;
 import com.prtech.svarog.SvParameter;
 import com.prtech.svarog.SvReader;
-import com.prtech.svarog.SvSequence;
 import com.prtech.svarog.svCONST;
 import com.prtech.svarog_common.DbDataArray;
 import com.prtech.svarog_common.DbDataObject;
-import com.prtech.svarog_common.DbQueryExpression;
-import com.prtech.svarog_common.DbQueryObject;
-import com.prtech.svarog_common.DbQueryObject.DbJoinType;
-import com.prtech.svarog_common.DbQueryObject.LinkType;
-import com.prtech.svarog_common.DbSearch.DbLogicOperand;
 import com.prtech.svarog_common.DbSearchCriterion;
 import com.prtech.svarog_common.DbSearchCriterion.DbCompareOperand;
 import com.prtech.svarog_common.DbSearchExpression;
-import com.prtech.svarog_common.SvCharId;
 
 /**
  * Helper class for access/search of data
@@ -605,8 +564,8 @@ public class Reader {
 		if (dboOrgUnit.getVal(Svu.PARENT_OU_ID) != null) {
 			DbDataObject dboParentOrgUnit = svr.getObjectById(dboOrgUnit.getAsLong(Svu.PARENT_OU_ID),
 					svCONST.OBJECT_TYPE_ORG_UNITS, null);
-			if (dboParentOrgUnit != null && dboParentOrgUnit.getVal(Sv.NAME) != null
-					&& !dboParentOrgUnit.getAsString(Sv.NAME).equalsIgnoreCase(Svu.HEADQUARTER)) {
+			if (dboParentOrgUnit != null && dboParentOrgUnit.getVal(Tc.NAME) != null
+					&& !dboParentOrgUnit.getAsString(Tc.NAME).equalsIgnoreCase(Svu.HEADQUARTER)) {
 				dbArr.addDataItem(dboParentOrgUnit);
 				return getAppropriateParentOrgUnits(dbArr, dboParentOrgUnit, svr);
 			}
@@ -627,7 +586,7 @@ public class Reader {
 	public DbDataArray getAppropriateSubOrgUnits(DbDataObject dboUser, DbDataObject dboOrgUnit, DbDataObject dbLinkType,
 			SvReader svr) throws SvException {
 		DbDataArray arrSubOrgUnits = new DbDataArray();
-		if (dboOrgUnit.getVal(Sv.NAME) != null) {
+		if (dboOrgUnit.getVal(Tc.NAME) != null) {
 			Long orgUnitObjId = dboOrgUnit.getObjectId();
 			DbDataArray arrLinkedOrgUnitsPerUser = svr.getObjectsByLinkedId(dboUser.getObjectId(),
 					dboUser.getObjectType(), dbLinkType, svCONST.OBJECT_TYPE_ORG_UNITS, false, new DateTime(), 0, 0);
