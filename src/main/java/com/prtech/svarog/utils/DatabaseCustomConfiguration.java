@@ -251,7 +251,7 @@ public class DatabaseCustomConfiguration {
 	 */
 	public static ArrayList<String> getSvarogCoreTablePermission(SvReader svr) throws SvException {
 		ArrayList<String> corePermissions = new ArrayList<String>();
-		DbSearchCriterion cr11 = new DbSearchCriterion(Sv.SYSTEM_TABLE, DbCompareOperand.EQUAL, true);
+		DbSearchCriterion cr11 = new DbSearchCriterion(Tc.SYSTEM_TABLE, DbCompareOperand.EQUAL, true);
 		DbDataArray dbArray1 = svr.getObjects(new DbSearchExpression().addDbSearchItem(cr11), svCONST.OBJECT_TYPE_TABLE,
 				null, 0, 0);
 		for (DbDataObject tempDbo : dbArray1.getItems()) {

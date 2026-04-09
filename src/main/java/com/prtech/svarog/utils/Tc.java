@@ -39,7 +39,9 @@ public class Tc {
 	public static final String GROUP_TYPE = "GROUP_TYPE";
 	public static final String GROUP_UID = "GROUP_UID";
 	public static final String GRANT = "GRANT";
-	public static final Object REVOKE = "REVOKE";
+	public static final String REVOKE = "REVOKE";
+	public static final String SYSTEM_TABLE = "SYSTEM_TABLE";
+	public static final String NAME = "NAME";
 
 	private Tc() {
 
