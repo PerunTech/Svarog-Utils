@@ -272,7 +272,7 @@ public class DatabaseCustomConfiguration {
 	 * @return
 	 * @throws SvException
 	 */
-	public void createSysParamIfNotExist(String paramName, String paramValue, String paramType, boolean shouldCommit,
+	public static void createSysParamIfNotExist(String paramName, String paramValue, String paramType, boolean shouldCommit,
 			SvWriter svw, SvReader svr) throws SvException {
 		if (!checkIfSysParamExists(paramName, svr)) {
 			DbDataObject dboSysParam = createSysParam(paramName, paramValue, paramType);
@@ -288,7 +288,7 @@ public class DatabaseCustomConfiguration {
 	 * @return Boolean
 	 * @throws SvException
 	 */
-	public Boolean checkIfSysParamExists(String paramNameValue, SvReader svr) throws SvException {
+	public static Boolean checkIfSysParamExists(String paramNameValue, SvReader svr) throws SvException {
 		DbReader rdr = new DbReader();
 		Boolean result = false;
 		DbDataObject dbo = rdr.searchDbObjectBySingleFilter(svCONST.OBJECT_TYPE_SYS_PARAMS, Sv.PARAM_NAME,
@@ -307,7 +307,7 @@ public class DatabaseCustomConfiguration {
 	 * @param paramType
 	 * @return DbDataObject
 	 */
-	public DbDataObject createSysParam(String paramName, String paramValue, String paramType) {
+	public static DbDataObject createSysParam(String paramName, String paramValue, String paramType) {
 		DbDataObject dboSysParam = new DbDataObject();
 		dboSysParam.setObjectType(svCONST.OBJECT_TYPE_SYS_PARAMS);
 		dboSysParam.setVal(Sv.PARAM_NAME, paramName);
