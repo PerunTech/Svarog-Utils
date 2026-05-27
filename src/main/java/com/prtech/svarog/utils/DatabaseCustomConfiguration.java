@@ -39,9 +39,10 @@ public class DatabaseCustomConfiguration {
 		if (tempUserGroup == null) {
 			return createUserGroup(userGroupType, userGroupName, groupSecurityType);
 		} else {
-			return null;
+			return tempUserGroup;
 		}
 	}
+	
 
 	/**
 	 * Method for Searching userGroup object in database
