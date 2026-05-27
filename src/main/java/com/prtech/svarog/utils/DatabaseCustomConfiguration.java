@@ -39,7 +39,7 @@ public class DatabaseCustomConfiguration {
 		if (tempUserGroup == null) {
 			return createUserGroup(userGroupType, userGroupName, groupSecurityType);
 		} else {
-			return null;
+			return tempUserGroup;
 		}
 	}
 
