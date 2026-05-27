@@ -42,7 +42,6 @@ public class DatabaseCustomConfiguration {
 			return tempUserGroup;
 		}
 	}
-	
 
 	/**
 	 * Method for Searching userGroup object in database
